@@ -27,6 +27,8 @@ public class GameView extends BoardView {
 
 	private int Help = 3;
 	private int Refresh = 3;
+	
+	// 第一关为100秒钟的时间
 	private int totalTime = 100;
 	private int leftTime;
 	
@@ -36,6 +38,7 @@ public class GameView extends BoardView {
 	private RefreshTime refreshTime;
 	private RefreshHandler refreshHandler = new RefreshHandler();
 
+	// 用来停止计时器的线程
 	private boolean isStop;
 	
 	private OnTimerListener timerListener = null;
@@ -47,7 +50,7 @@ public class GameView extends BoardView {
 	public GameView(Context context, AttributeSet atts) {
 		super(context, atts);
 		player = MediaPlayer.create(context, R.raw.back2new); 
-		player.setLooping(true);//ÉèÖÃÑ­»·²¥·Å
+		player.setLooping(true);//设置循环播放
 	}
 	
 	public static final int ID_SOUND_CHOOSE = 0;
@@ -74,6 +77,7 @@ public class GameView extends BoardView {
 	}
 	
 	public void startNextPlay(){
+		//下一关为上一关减去10秒的时间
 		totalTime-=10;
 		startPlay();
 	}

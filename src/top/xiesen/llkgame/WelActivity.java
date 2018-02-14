@@ -42,17 +42,19 @@ private Handler handler = new Handler(){
 	public void handleMessage(Message msg) {
 		switch(msg.what){
 		case 0:
-			dialog = new MyDialog(WelActivity.this,gameView,"Ê¤Àû£¡",gameView.getTotalTime() - progress.getProgress());
+			dialog = new MyDialog(WelActivity.this,gameView,"胜利！",gameView.getTotalTime() - progress.getProgress());
 			dialog.show();
 			break;
 		case 1:
-			dialog = new MyDialog(WelActivity.this,gameView,"Ê§°Ü£¡",gameView.getTotalTime() - progress.getProgress());
+			dialog = new MyDialog(WelActivity.this,gameView,"失败！",gameView.getTotalTime() - progress.getProgress());
 			dialog.show();
 		}
 	}
 };
 
-/** Called when the activity is first created. */
+/**
+ * Called when the activity is first created.
+ */
 @Override
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -82,7 +84,7 @@ public void onCreate(Bundle savedInstanceState) {
     btnPlay.startAnimation(scale);
     
     player = MediaPlayer.create(this, R.raw.bg);
-    player.setLooping(true);//ÉèÖÃÑ­»·²¥·Å
+    player.setLooping(true);//设置循环播放
     player.start();
     
 //    GameView.soundPlay.play(GameView.ID_SOUND_BACK2BG, -1);

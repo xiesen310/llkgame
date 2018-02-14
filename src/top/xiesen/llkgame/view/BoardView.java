@@ -21,13 +21,28 @@ import android.view.View;
 
 public class BoardView extends View {
 
+	// xCount x轴方向的图标数+1
 	protected  static final int xCount =10;
+	
+	// yCount y轴方向的图标数+1
 	protected static final int  yCount =12;
+	
+	// map 连连看游戏棋盘
 	protected int[][] map = new int[xCount][yCount];
+	
+	// iconSize 图标大小
 	protected int iconSize;
+	
+	// iconCounts 图标的数目
 	protected int iconCounts=19;
+	
+	// icons 所有的图片
 	protected Bitmap[] icons = new Bitmap[iconCounts];
+	
+	// path 可以连通点的路径
 	private Point[] path = null;
+	
+	// selected 选中的图标
 	protected List<Point> selected = new ArrayList<Point>();
 	
 	public BoardView(Context context,AttributeSet atts) {
@@ -56,6 +71,9 @@ public class BoardView extends View {
 		loadBitmaps(18, r.getDrawable(R.drawable.fruit_19));
 	}
 	
+	/**
+	 * 计算图标的长宽
+	 */
 	private void calIconSize()
     {
         DisplayMetrics dm = new DisplayMetrics();
@@ -64,6 +82,11 @@ public class BoardView extends View {
         iconSize = dm.widthPixels/(xCount);
     }
 
+	/**
+	 * 加载位图
+	 * @param key 特定图标的标识
+	 * @param d drawable下的资源
+	 */
 	public void loadBitmaps(int key,Drawable d){
 		Bitmap bitmap = Bitmap.createBitmap(iconSize,iconSize,Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
@@ -72,6 +95,9 @@ public class BoardView extends View {
 		icons[key]=bitmap;
 	}
 	
+	/**
+	 * 绘制连通路径，然后将路径以及两个图标清除
+	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
 		if (path != null && path.length >= 2) {
@@ -92,6 +118,10 @@ public class BoardView extends View {
 			selected.clear();
 			path = null;
 		}
+		
+		/**
+		 * 绘制棋盘的所有图标 当这个坐标内的值大于0时绘制
+		 */
 		for(int x=0;x<map.length;x+=1){
 			for(int y=0;y<map[x].length;y+=1){
 				if(map[x][y]>0){
@@ -101,7 +131,9 @@ public class BoardView extends View {
 			}
 		}
 		
-
+		/**
+		 * 绘制选中图标，当选中时图标放大显示
+		 */
 		for(Point position:selected){
 			Point p = indextoScreen(position.x, position.y);
 			if(map[position.x][position.y] >= 1){
@@ -117,10 +149,22 @@ public class BoardView extends View {
 		this.invalidate();
 	}
 
+	/**
+	 * 工具方法
+	 * @param x 数组中的横坐标
+	 * @param y 数组中的纵坐标
+	 * @return 将图标在数组中的坐标转成在屏幕上的真实坐标
+	 */
 	public Point indextoScreen(int x,int y){
 		return new Point(x* iconSize , y * iconSize );
 	}
-
+	
+	/**
+	 * 工具方法
+	 * @param x 屏幕中的横坐标
+	 * @param y 屏幕中的纵坐标
+	 * @return 将图标在屏幕中的坐标转成在数组上的虚拟坐标
+	 */
 	public Point screenToindex(int x,int y){
 		int ix = x/ iconSize;
 		int iy = y / iconSize;

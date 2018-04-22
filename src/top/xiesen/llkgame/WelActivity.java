@@ -1,14 +1,19 @@
 package top.xiesen.llkgame;
 
+import top.xiesen.llkgame.other.About;
 import top.xiesen.llkgame.view.GameView;
 import top.xiesen.llkgame.view.OnStateListener;
 import top.xiesen.llkgame.view.OnTimerListener;
 import top.xiesen.llkgame.view.OnToolsChangeListener;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.view.Menu;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -25,6 +31,7 @@ import android.widget.TextView;
 public class WelActivity extends Activity
 implements OnClickListener,OnTimerListener,OnStateListener,OnToolsChangeListener{
 
+private Button btnAbout;
 private ImageButton btnPlay;
 private ImageButton btnRefresh;
 private ImageButton btnTip;
@@ -58,7 +65,9 @@ private Handler handler = new Handler(){
 @Override
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.welcome);
+    setContentView(R.layout.welcome);   
+    
+//    btnAbout = (Button)findViewById(R.id.about);
     btnPlay = (ImageButton) findViewById(R.id.play_btn);
     btnRefresh = (ImageButton) findViewById(R.id.refresh_btn);
     btnTip = (ImageButton) findViewById(R.id.tip_btn);
@@ -72,6 +81,7 @@ public void onCreate(Bundle savedInstanceState) {
     progress.setMax(gameView.getTotalTime());
     
     btnPlay.setOnClickListener(this);
+    
     btnRefresh.setOnClickListener(this);
     btnTip.setOnClickListener(this);
     gameView.setOnTimerListener(this);
@@ -167,6 +177,29 @@ public void OnStateChanged(int StateMode) {
     	gameView.stopTimer();
     	break;
 	}
+}
+// 实现退出确认对话框
+@Override
+public void onBackPressed() {
+	new AlertDialog.Builder(this).setTitle("确认退出吗？") 
+    .setIcon
+    (android.R.drawable.ic_dialog_info) 
+    .setPositiveButton("确定", new DialogInterface.OnClickListener() { 
+ 
+        @Override 
+        public void onClick(DialogInterface dialog, int which) { 
+        // 点击“确认”后的操作 
+            WelActivity.this.finish(); 
+ 
+        } 
+    }) 
+    .setNegativeButton("返回", new DialogInterface.OnClickListener() { 
+ 
+        @Override 
+        public void onClick(DialogInterface dialog, int which) { 
+        // 点击“返回”后的操作,这里不设置没有任何操作 
+        } 
+    }).show(); 
 }
 
 @Override

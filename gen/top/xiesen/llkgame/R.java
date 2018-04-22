@@ -51,25 +51,27 @@ public final class R {
         public static final int title=0x7f02001e;
     }
     public static final class id {
-        public static final int clock=0x7f080008;
-        public static final int game_view=0x7f08000a;
-        public static final int menu_imgbtn=0x7f080003;
-        public static final int next_imgbtn=0x7f080005;
-        public static final int play_btn=0x7f080006;
-        public static final int refresh_btn=0x7f08000b;
-        public static final int replay_imgbtn=0x7f080004;
-        public static final int text_message=0x7f080001;
-        public static final int text_refresh_num=0x7f08000c;
-        public static final int text_time=0x7f080002;
-        public static final int text_tip_num=0x7f08000e;
-        public static final int timer=0x7f080009;
-        public static final int tip_btn=0x7f08000d;
-        public static final int title_img=0x7f080007;
-        public static final int view_dialog=0x7f080000;
+        public static final int clock=0x7f080009;
+        public static final int game_view=0x7f08000b;
+        public static final int menu_imgbtn=0x7f080004;
+        public static final int next_imgbtn=0x7f080006;
+        public static final int play_btn=0x7f080007;
+        public static final int refresh_btn=0x7f08000c;
+        public static final int replay_imgbtn=0x7f080005;
+        public static final int text_message=0x7f080002;
+        public static final int text_refresh_num=0x7f08000d;
+        public static final int text_time=0x7f080003;
+        public static final int text_tip_num=0x7f08000f;
+        public static final int textview1=0x7f080000;
+        public static final int timer=0x7f08000a;
+        public static final int tip_btn=0x7f08000e;
+        public static final int title_img=0x7f080008;
+        public static final int view_dialog=0x7f080001;
     }
     public static final class layout {
-        public static final int dialog_view=0x7f030000;
-        public static final int welcome=0x7f030001;
+        public static final int about=0x7f030000;
+        public static final int dialog_view=0x7f030001;
+        public static final int welcome=0x7f030002;
     }
     public static final class raw {
         public static final int alarm=0x7f050000;
@@ -90,6 +92,7 @@ public final class R {
         public static final int quit=0x7f060003;
         public static final int sure_quit=0x7f060004;
         public static final int time=0x7f060002;
+        public static final int title_about=0x7f060007;
     }
     public static final class style {
         public static final int dialog=0x7f070000;

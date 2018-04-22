@@ -20,6 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        
+        <activity
+            android:name=".About"
+            android:label="@string/title_about" 
+            android:theme="@android:style/Theme.Dialog">//这一行不能少，申明以对话框的形式弹出Acitvity
+        </activity>
 
     </application>
 

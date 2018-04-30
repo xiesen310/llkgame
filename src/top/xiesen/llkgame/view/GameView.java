@@ -27,32 +27,32 @@ public class GameView extends BoardView {
 
 	private int Help = 3;
 	private int Refresh = 3;
-	
+
 	// 第一关为100秒钟的时间
 	private int totalTime = 100;
 	private int leftTime;
-	
+
 	public static SoundPlay soundPlay;
 	public MediaPlayer player;
-	
+
 	private RefreshTime refreshTime;
 	private RefreshHandler refreshHandler = new RefreshHandler();
 
 	// 用来停止计时器的线程
 	private boolean isStop;
-	
+
 	private OnTimerListener timerListener = null;
 	private OnStateListener stateListener = null;
 	private OnToolsChangeListener toolsChangedListener = null;
 
 	private List<Point> path = new ArrayList<Point>();
-	
+
 	public GameView(Context context, AttributeSet atts) {
 		super(context, atts);
-		player = MediaPlayer.create(context, R.raw.back2new); 
-		player.setLooping(true);//设置循环播放
+		player = MediaPlayer.create(context, R.raw.back2new);
+		player.setLooping(true);// 设置循环播放
 	}
-	
+
 	public static final int ID_SOUND_CHOOSE = 0;
 	public static final int ID_SOUND_DISAPEAR = 1;
 	public static final int ID_SOUND_WIN = 4;
@@ -60,14 +60,14 @@ public class GameView extends BoardView {
 	public static final int ID_SOUND_REFRESH = 6;
 	public static final int ID_SOUND_TIP = 7;
 	public static final int ID_SOUND_ERROR = 8;
-	
-	public void startPlay(){
+
+	public void startPlay() {
 		Help = 3;
 		Refresh = 3;
 		isStop = false;
 		toolsChangedListener.onRefreshChanged(Refresh);
 		toolsChangedListener.onTipChanged(Help);
-		
+
 		leftTime = totalTime;
 		initMap();
 		player.start();
@@ -75,41 +75,42 @@ public class GameView extends BoardView {
 		refreshTime.start();
 		GameView.this.invalidate();
 	}
-	
-	public void startNextPlay(){
-		//下一关为上一关减去10秒的时间
-		totalTime-=10;
+
+	public void startNextPlay() {
+		// 下一关为上一关减去10秒的时间
+		totalTime -= 10;
 		startPlay();
 	}
-	
-	public static void initSound(Context context){
-		 soundPlay = new SoundPlay();
-	        soundPlay.initSounds(context);
-	        soundPlay.loadSfx(context, R.raw.choose, ID_SOUND_CHOOSE);
-	        soundPlay.loadSfx(context, R.raw.disappear1, ID_SOUND_DISAPEAR);
-	        soundPlay.loadSfx(context, R.raw.win, ID_SOUND_WIN);
-	        soundPlay.loadSfx(context, R.raw.lose, ID_SOUND_LOSE);
-	        soundPlay.loadSfx(context, R.raw.item1, ID_SOUND_REFRESH);
-	        soundPlay.loadSfx(context, R.raw.item2, ID_SOUND_TIP);
-	        soundPlay.loadSfx(context, R.raw.alarm, ID_SOUND_ERROR);
+
+	public static void initSound(Context context) {
+		soundPlay = new SoundPlay();
+		soundPlay.initSounds(context);
+		soundPlay.loadSfx(context, R.raw.choose, ID_SOUND_CHOOSE);
+		soundPlay.loadSfx(context, R.raw.disappear1, ID_SOUND_DISAPEAR);
+		soundPlay.loadSfx(context, R.raw.win, ID_SOUND_WIN);
+		soundPlay.loadSfx(context, R.raw.lose, ID_SOUND_LOSE);
+		soundPlay.loadSfx(context, R.raw.item1, ID_SOUND_REFRESH);
+		soundPlay.loadSfx(context, R.raw.item2, ID_SOUND_TIP);
+		soundPlay.loadSfx(context, R.raw.alarm, ID_SOUND_ERROR);
 	}
 
-	public void setOnTimerListener(OnTimerListener timerListener){
+	public void setOnTimerListener(OnTimerListener timerListener) {
 		this.timerListener = timerListener;
 	}
-	
-	public void setOnStateListener(OnStateListener stateListener){
+
+	public void setOnStateListener(OnStateListener stateListener) {
 		this.stateListener = stateListener;
 	}
-	
-	public void setOnToolsChangedListener(OnToolsChangeListener toolsChangedListener){
+
+	public void setOnToolsChangedListener(
+			OnToolsChangeListener toolsChangedListener) {
 		this.toolsChangedListener = toolsChangedListener;
 	}
-	
-	public void stopTimer(){
+
+	public void stopTimer() {
 		isStop = true;
 	}
-	
+
 	class RefreshHandler extends Handler {
 
 		@Override
@@ -147,23 +148,23 @@ public class GameView extends BoardView {
 					e.printStackTrace();
 				}
 			}
-			if(!isStop){
+			if (!isStop) {
 				setMode(LOSE);
 				soundPlay.play(ID_SOUND_LOSE, 0);
 			}
-			
+
 		}
 	}
-	
-	public int getTotalTime(){
+
+	public int getTotalTime() {
 		return totalTime;
 	}
-	
-	public int getTipNum(){
+
+	public int getTipNum() {
 		return Help;
 	}
-	
-	public int getRefreshNum(){
+
+	public int getRefreshNum() {
 		return Refresh;
 	}
 
@@ -413,7 +414,7 @@ public class GameView extends BoardView {
 	public void autoClear() {
 		if (Help == 0) {
 			soundPlay.play(ID_SOUND_ERROR, 0);
-		}else{
+		} else {
 			soundPlay.play(ID_SOUND_TIP, 0);
 			Help--;
 			toolsChangedListener.onTipChanged(Help);
@@ -421,12 +422,12 @@ public class GameView extends BoardView {
 			refreshHandler.sleep(500);
 		}
 	}
-	
-	public void refreshChange(){
-		if(Refresh == 0){
+
+	public void refreshChange() {
+		if (Refresh == 0) {
 			soundPlay.play(ID_SOUND_ERROR, 0);
 			return;
-		}else{
+		} else {
 			soundPlay.play(ID_SOUND_REFRESH, 0);
 			Refresh--;
 			toolsChangedListener.onRefreshChanged(Refresh);
@@ -434,4 +435,3 @@ public class GameView extends BoardView {
 		}
 	}
 }
-

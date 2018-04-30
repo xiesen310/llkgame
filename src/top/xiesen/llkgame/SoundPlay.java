@@ -9,7 +9,7 @@ import android.media.SoundPool;
 public class SoundPlay {
 	// 音效的音量
 	int streamVolume;
-	
+
 	// 定义SoundPool 对象
 	private SoundPool soundPool;
 
@@ -18,6 +18,7 @@ public class SoundPlay {
 
 	/**
 	 * 初始化声音系统
+	 * 
 	 * @param context
 	 */
 	public void initSounds(Context context) {
@@ -34,8 +35,8 @@ public class SoundPlay {
 	}
 
 	/**
-	 * 把资源中的音效加载到指定的ID(播放的时候就对应到这个ID播放就行了)
-	 * 加载音效资源
+	 * 把资源中的音效加载到指定的ID(播放的时候就对应到这个ID播放就行了) 加载音效资源
+	 * 
 	 * @param context
 	 * @param raw
 	 * @param ID
@@ -46,8 +47,11 @@ public class SoundPlay {
 
 	/**
 	 * 播放声音
-	 * @param sound 要播放的音效的ID
-	 * @param uLoop 循环次数
+	 * 
+	 * @param sound
+	 *            要播放的音效的ID
+	 * @param uLoop
+	 *            循环次数
 	 */
 	public void play(int sound, int uLoop) {
 		soundPool.play(soundPoolMap.get(sound), streamVolume, streamVolume, 1,

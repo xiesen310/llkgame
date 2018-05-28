@@ -9,7 +9,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+/**
+ * 自定义弹框
+ * @author Allen
+ *
+ */
 public class MyDialog extends Dialog implements OnClickListener {
 
 	private GameView gameview;

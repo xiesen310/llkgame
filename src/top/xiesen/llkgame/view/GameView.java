@@ -237,6 +237,10 @@ public class GameView extends BoardView {
 		this.stateListener.OnStateChanged(stateMode);
 	}
 
+	/**
+	 * 判断游戏是否结束
+	 * @return
+	 */
 	private boolean die() {
 		for (int y = 1; y < yCount - 1; y++) {
 			for (int x = 1; x < xCount - 1; x++) {
@@ -268,7 +272,13 @@ public class GameView extends BoardView {
 
 	List<Point> p1E = new ArrayList<Point>();
 	List<Point> p2E = new ArrayList<Point>();
-
+	
+	/**
+	 * 判断游戏节点是否能够连接
+	 * @param p1
+	 * @param p2
+	 * @return
+	 */
 	private boolean link(Point p1, Point p2) {
 		if (p1.equals(p2)) {
 			return false;
@@ -400,6 +410,10 @@ public class GameView extends BoardView {
 		}
 	}
 
+	/**
+	 * 判读游戏是否能够赢
+	 * @return
+	 */
 	private boolean win() {
 		for (int x = 0; x < xCount; x++) {
 			for (int y = 0; y < yCount; y++) {
@@ -411,6 +425,9 @@ public class GameView extends BoardView {
 		return true;
 	}
 
+	/**
+	 * 提示功能，自动清除
+	 */
 	public void autoClear() {
 		if (Help == 0) {
 			soundPlay.play(ID_SOUND_ERROR, 0);
@@ -423,6 +440,9 @@ public class GameView extends BoardView {
 		}
 	}
 
+	/**
+	 * 刷新页面场景
+	 */
 	public void refreshChange() {
 		if (Refresh == 0) {
 			soundPlay.play(ID_SOUND_ERROR, 0);

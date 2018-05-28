@@ -5,7 +5,11 @@ import java.util.HashMap;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
-
+/**
+ * 音效设置
+ * @author Allen
+ *
+ */
 public class SoundPlay {
 	// 音效的音量
 	int streamVolume;
@@ -48,10 +52,8 @@ public class SoundPlay {
 	/**
 	 * 播放声音
 	 * 
-	 * @param sound
-	 *            要播放的音效的ID
-	 * @param uLoop
-	 *            循环次数
+	 * @param sound 要播放的音效的ID
+	 * @param uLoop 循环次数
 	 */
 	public void play(int sound, int uLoop) {
 		soundPool.play(soundPoolMap.get(sound), streamVolume, streamVolume, 1,

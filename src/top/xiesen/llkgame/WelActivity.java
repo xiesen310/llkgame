@@ -29,6 +29,11 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+/**
+ * 欢迎页面Activity
+ * @author Allen
+ *
+ */
 public class WelActivity extends Activity implements OnClickListener,
 		OnTimerListener, OnStateListener, OnToolsChangeListener {
 

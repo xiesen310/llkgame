@@ -144,6 +144,10 @@ public class BoardView extends View {
 		}
 	}
 	
+	/**
+	 * 绘制连接线
+	 * @param path
+	 */
 	public void drawLine(Point[] path) {
 		this.path = path;
 		this.invalidate();
